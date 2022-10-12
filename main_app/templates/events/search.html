@@ -3,6 +3,17 @@
 
 {% block body %}
 
+{% if postal_code != "" %}
+<h1>Showing events 
+    {% if range != ""%}
+    within {{range}} from
+    {% else %}
+    near
+    {% endif %}
+    {{postal_code}} 
+</h1>
+{% endif %}
+
 {% if events.events %}
 
 <div class="search container-fluid">
@@ -14,6 +25,7 @@
             <h1 class="card-title">{{concerts.short_title}}</h1> 
             <!-- move below data to event detail page? -->
             <h2>{{concerts.venue.name}}</h2>
+            <h2>{{concerts.type}}</h2>
             <h2>Performers</h2>
             <ul>
                 {% for performers in concerts.performers%}
