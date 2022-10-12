@@ -9,7 +9,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Artists, UserProfile
 import requests
 import environ
-from .spotify import artist_topsongs
+from .spotify import artist_topsongs, artist_related_artists
 
 env = environ.Env()
 
@@ -99,11 +99,21 @@ def artist_detail(request, artist_seatgeek_id):
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
     artist = call_api_for_artist_data(artist_seatgeek_id)
+    related_artist = ""
     topsongs = ""
+    performer_slug = {'performers.slug':str(artist_seatgeek_id)}
+    artist_upcoming_events = call_api_with_filters_for_event(performer_slug)
     if artist['links']:
         artist_id=artist['links'][0]['id'][15:]
         topsongs = artist_topsongs(artist_id)
-    return render(request, 'artists/artist_detail.html', {'artist':artist, 'artist_top_songs': topsongs, 'profile':profile})
+        related_artist = artist_related_artists(artist_id)
+   
+    return render(request, 'artists/artist_detail.html', {
+        'artist':artist, 
+        'artist_top_songs': topsongs, 
+        'profile':profile, 
+        'artist_related_artists': related_artist,
+        'artist_upcoming_events': artist_upcoming_events})
     
 
 

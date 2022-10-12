@@ -5,44 +5,52 @@
 
 
 
-
-<div class="artistphoto">
-    <img src="{{ artist.image }}">
-</div>
-<div class="artist-card">
+<div class="main-artist-card">
+    <div class="main-artist-photo">
+        <img src="{{ artist.image }}">
+    </div>
     <div class="artist-name">
         <h1>{{artist.name}}</h1>
     </div>
-{% if user.is_authenticated %}
-    {% if profile.fav_artists.count%}
-    {% if favartist in profile.fav_artists.all %}
-        {{profile.fav_artists.all}}
     
-        <form action="{% url 'follow_or_create_artist' artist.id user.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="">
-                    Follow Artist
-                </button>
-        </form>
-        {% else %}
+    <div class="artist-follow-button">
+{% if user.is_authenticated %}
+    
+{% if artist.name == profile.fav_artists.all.3 %}
+    
+    <p>unfollow</p>
+    <p>{{ profile.fav_artists.all }}</p>
+    
+        
         <form action="{% url 'unfollow_artist' artist.id user.id %}" method="post">
             {% csrf_token %}
             <button type="submit" class="">
                 Unfollow Artist
             </button>
         </form>
+        
+        {% else %}
+        <p>{{ artist.name }}</p>
+        <p>{{ profile.fav_artists.filter}}</p>
+        <p>{{ profile.fav_artists.filter.3}}</p>
+        
+         <p>follow</p>
+        </div>
+         <form action="{% url 'follow_or_create_artist' artist.id user.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="">
+                    Follow Artist
+                </button>
+        </form>
+    
 
     {% endif %}
-{% else %}
-        <form action="{% url 'follow_or_create_artist' artist.id user.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="">
-                Follow Artist
-            </button>
-        </form>    
+   
+
 {% endif %}
-{% endif %}
-    <div class="artist-content">
+
+
+    <div class="artist-top-songs">
         <ul>
 {% if artist_top_songs != "" %}
 {% for song in artist_top_songs.tracks %}
@@ -54,9 +62,9 @@
             <li>No spotify links for the artist found</li>
 {% endif %}
         </ul>
-
-
-    <h2>Genre</h2>
+        </div>
+       <div class="artist-genre">
+  <h2>Genre</h2>
         <ul>
     {% if artist.genres %}
     {% for genre in artist.genres %}
@@ -66,6 +74,25 @@
             <li>Genre not found</li>
     {% endif %}
         </ul>
+        </div>
     </div>
-</div>
+
+
+    <div class="related-artist-container">
+        
+        <h2>Related Artists</h2>
+{% for artist in artist_related_artists.artists %}
+
+    <div class="related-artist-card">
+        <img class="related-artist-image" src="{{ artist.images.0.url }}">
+        <h2>{{ artist.name }}</h2>
+    </div>
+    
+ 
+{% endfor %}
+    </div>
+
+
+
+  
 {% endblock %}
