@@ -1,8 +1,5 @@
-/* HOME AND ABOUT PAGE STYLING */
 /* HOME PAGE */
-/* .home-container-title {
-    margin-bottom: 1rem;
-} */
+
 .home-search-container {
   background-color: #f8f9fa;
 }
@@ -38,7 +35,7 @@
 }
 
 .search-title {
-  margin-left: 50px;
+  margin: 20px 0px 20px 50px;
 }
 
 .home-search-container {
@@ -69,19 +66,19 @@
     0 8px 16px rgba(0, 0, 0, 0.11);
 }
 
-.card-block {
-  font-size: 1em;
-  flex-grow: 1;
-  margin: 0;
-  border: none;
-  border-top: 1px solid rgba(34, 36, 38, .1);
-  box-shadow: none;
-}
 
 .card-img-top {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.card-block {
+  font-size: 1em;
+  margin: 0;
+  border: none;
+  border-top: 1px solid rgba(34, 36, 38, .1);
+  box-shadow: none;
 }
 
 .card-title {
@@ -94,13 +91,10 @@
 .card-text {
   color: rgba(0, 0, 0, .7);
 }
-
-hr {
-  width: 75%;
-  color: rgba(0, 0, 0, .7);
-  margin:0;
-  height: 1px;
+.card-footer {
+  bottom: 0;
 }
+
 .grid-card a {
   text-decoration: none;
   color: black;
@@ -131,4 +125,56 @@ hr {
 
 
 /* SEARCH RESULTS PAGE */
-/* USER PROFILE PAGE *
+/* USER PROFILE PAGE */
+#userProfileWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#userProfileDisplay {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  min-height: 800px;
+  min-width: 900px;
+  margin-top: 50px;
+}
+#userProfileUl li {
+  list-style: none;
+}
+
+#userProfileUl li a {
+  color: black;
+}
+
+.user-profile-h1 {
+  border-bottom: solid 2px black;
+}
+
+.user-profile-edit-page {
+  display: flex;
+flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-profile-edit-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 600px;
+  min-width: 800px;
+}
+.user-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#update {
+  font-size: larger;
+  font-weight: 200;
+  color: #2c49b5;
+}

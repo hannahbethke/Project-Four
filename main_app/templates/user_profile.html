@@ -2,22 +2,55 @@
 
 {% block body %}
 
-<h1>User Profile</h1>
-
-<a class="btn" href="{% url 'user_profile_edit' %}">Edit User Profile</a>
-
-
-
-<h1>Followed Artists</h1>
-<ul>
-    {% if profile.fav_artists.count %}
-        {% for artists in profile.fav_artists.all %}
-    <li>
-        <a href="{% url 'artist_detail' artists.artist_seatgeek_id %}">{{artists.artist}}</a>   
-    </li>
-    {% endfor %}
-    {% endif %}
-</ul>
+<div class="wrapper" id="userProfileWrapper">
+	<div class="sidebar p-5 col-3" id="userProfileSidebar">
+        <img class="pl-4 py-5" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnoVSgnlo6uy12MzKsXWkkr3CA6dZTH8rmzuo2PC_S7wAbL5V1BlCb0hqwRqMlRrhgrPM&usqp=CAU" alt="avatar">
+        <h1 class="pb-4">{{profile.first_name}} {{profile.last_name}}</h1>
+        <ul id="userProfileUl">
+			<li class="py-4">
+                <a href="{% url 'user_profile_edit' %}">
+                    <span id="update">Update Profile</span>
+                </a>
+            </li>
+			<li class="py-4">
+                <a href="{% url 'home' %}">
+                    Browse Events
+                </a>
+            </li>
+			<li class="py-4">
+                <a href="https://open.spotify.com/">
+                    Listen on Spotify
+                </a>
+            </li>
+		</ul>
+	</div>
+    <div class="grid-card" id="userProfileDisplay">
+        <div class="p-5">
+            <h1 class="user-profile-h1">Followed Artists</h1>
+            <ul>
+            {% if profile.fav_artists.count %}
+            {% for artists in profile.fav_artists.all %}
+                <li>
+                    <a href="{% url 'artist_detail' artists.artist_seatgeek_id %}">{{artists.artist}}</a>   
+                </li>
+            {% endfor %}
+            {% endif %}
+            </ul>
+        </div>
+        <div class="p-5">
+            <h1 class="user-profile-h1">Followed Events</h1>
+            <ul>
+            {% if profile.followed_event.count %}
+            {% for events in profile.followed_event.all %}
+                <li>
+                    <a href="{% url 'detail' events.event_seatgeek_id %}">{{events.event_name}}</a>   
+                </li>
+            {% endfor %}
+            {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
 
