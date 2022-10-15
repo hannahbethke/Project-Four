@@ -202,7 +202,7 @@ def user_profile_edit(request):
 
 def user_profile(request):
     profile = UserProfile.objects.get(user=request.user)
-    return render(request, 'auth/user_profile.html', {'profile': profile})
+    return render(request, 'user_profile.html', {'profile': profile})
 
 
 ## many to many relationship (for following an artist)
