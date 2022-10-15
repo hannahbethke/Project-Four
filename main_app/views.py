@@ -182,9 +182,9 @@ def signup(request):
         else:
             error_message = 'invalid credentials'
 
-    context = {'form': form, 'error_message': error_message}
+    context = {'form': form, 'error_message': error_message, 'page_name': 'Signup'}
 
-    return render(request, 'registration/signup.html', context, {'page_name': 'Signup'})
+    return render(request, 'registration/signup.html', context)
 
 
 def user_profile_edit(request):
