@@ -6,14 +6,23 @@
 
 <a class="btn" href="{% url 'user_profile_edit' %}">Edit User Profile</a>
 
-
-
 <h1>Followed Artists</h1>
 <ul>
     {% if profile.fav_artists.count %}
         {% for artists in profile.fav_artists.all %}
     <li>
         <a href="{% url 'artist_detail' artists.artist_seatgeek_id %}">{{artists.artist}}</a>   
+    </li>
+    {% endfor %}
+    {% endif %}
+</ul>
+
+<h1>Followed Events</h1>
+<ul>
+    {% if profile.followed_event.count %}
+        {% for events in profile.followed_event.all %}
+    <li>
+        <a href="{% url 'detail' events.event_seatgeek_id %}">{{events.event_name}}</a>   
     </li>
     {% endfor %}
     {% endif %}
