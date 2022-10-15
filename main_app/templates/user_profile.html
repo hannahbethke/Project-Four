@@ -30,19 +30,20 @@
             <ul>
             {% if profile.fav_artists.count %}
             {% for artists in profile.fav_artists.all %}
-                <li>
+                <li class="py-4">
                     <a href="{% url 'artist_detail' artists.artist_seatgeek_id %}">{{artists.artist}}</a>   
                 </li>
             {% endfor %}
             {% endif %}
             </ul>
         </div>
+
         <div class="p-5">
             <h1 class="user-profile-h1">Followed Events</h1>
             <ul>
             {% if profile.followed_event.count %}
             {% for events in profile.followed_event.all %}
-                <li>
+                <li class="py-4">
                     <a href="{% url 'detail' events.event_seatgeek_id %}">{{events.event_name}}</a>   
                 </li>
             {% endfor %}

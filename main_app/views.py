@@ -165,7 +165,8 @@ def artist_detail(request, artist_seatgeek_id):
         'artist_upcoming_concerts': artist_upcoming_events[0],
         'artist_upcoming_festivals': artist_upcoming_events[1],
         'artist_id': artist_id,
-        })
+        'page_name': 'Detail'}
+        )
 
 
 def signup(request):
@@ -177,13 +178,13 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('user_profile')
+            return redirect('user_profile_edit')
         else:
             error_message = 'invalid credentials'
 
     context = {'form': form, 'error_message': error_message}
 
-    return render(request, 'registration/signup.html', context)
+    return render(request, 'registration/signup.html', context, {'page_name': 'Signup'})
 
 
 def user_profile_edit(request):
@@ -197,12 +198,12 @@ def user_profile_edit(request):
     else:
         profile_form = ProfileForm(instance=request.user.profile)
 
-    return render(request, 'main_app/userprofile_form.html', {'profile_form': profile_form, 'page_name': 'My Profile'})
+    return render(request, 'main_app/userprofile_form.html', {'profile_form': profile_form, 'page_name': 'Edit Profile'})
 
 
 def user_profile(request):
     profile = UserProfile.objects.get(user=request.user)
-    return render(request, 'user_profile.html', {'profile': profile})
+    return render(request, 'user_profile.html', {'profile': profile, 'page_name': 'My Profile'})
 
 
 ## many to many relationship (for following an artist)
