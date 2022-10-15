@@ -2,30 +2,44 @@
 
 
 {% block body %}
-<div class="login-page">
-<div class="row">
-    <div class="col">
-        <img src="https://images.pexels.com/photos/1763067/pexels-photo-1763067.jpeg?auto=compress&cs=tinysrgb&w=800">    
-        </div>
-    
-    <div class="col">
-        <div class="login-form">
-        <div class="login-title">
-            <h1>Please Login</h1>
+
+
+
+
+  <div class="login-page">
+    <div class="row">
+
+        <div class="col">
+            <img class="grid-card" src="https://images.pexels.com/photos/1763067/pexels-photo-1763067.jpeg?auto=compress&cs=tinysrgb&w=800">    
         </div>
         
-            {% if error_message %}
-            <p class="text-red">{{ error_message }}</p>
-            {% endif %}
 
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input class="btn btn_primary" type="submit" value="Login">
-            </form>
+        <div class="col">
+            <div class="login-form">
+                <div class="form-card">
+                    <div class="login-title">
+                        <h2>Please Login</h2>
+                        <hr>
+                        <p>Don't have an account?</p>
+                        <a href="{% url 'signup' %}">Signup</a>
+                    </div>      
+                    <hr>
+                    <!-- TO-DO error message doesn't show up in red? -->
+                    {% if error_message %}
+                    <ul>
+                        <li class="text-red text-left">{{ error_message }}</li>
+                    </ul>
+                    {% endif %}
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input class="btn btn-start-order" type="submit" value="Login">
+                    </form>
+                </div>
+            </div>
         </div>
-        </div>
+    </div>
 </div>
-</div>
+
 
 {% endblock %}

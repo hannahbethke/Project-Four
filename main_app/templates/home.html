@@ -14,7 +14,7 @@
                 <input class="m-1 p-1" type="text" name='postal_code' id="postal_code" placeholder="zipcode">
                 <input class="m-1 p-1" type="text" name='range' id="range" placeholder="range in miles" disabled>  
                 <input class="m-1 p-1" type="text" name='performers.slug' id="performers.slug" placeholder="artist name">    
-                <button class="search-icon" type="submit" value="Filter"><i class="bi bi-search"></i></button>
+                <button class="search-icon" type="submit" value="Filter"><i class="fa fa-search"></i></button>
             </form>
         </div>
     </div>
@@ -69,14 +69,14 @@
         <h1>Upcoming Shows</h1>
     </div>
 
-    <hr id="homeHR">
+    <hr>
 
     <div class="card-grid">
 
             {% for concerts in events.events%}
             <div class="card grid-card">
                 <a href="{% url 'detail' concerts.id %}">
-                    
+
                     <img class="card-img-top" src="{{concerts.performers.0.image}}" alt="Image of Artist">
                     <div class="card-block">
                         <h4 class="card-title m-3">{{concerts.short_title}}</h4>
@@ -84,13 +84,12 @@
                             <h6>{{concerts.venue.name}}</h6>
                             <h6>{{concerts.display_location}}</h6>
                         </div>
-                        <div class="card-footer">
-                            <h6 id="concert{{concerts.id}}">
-                                {{concerts.datetime_local|slice:"5:7"}}/{{concerts.datetime_local|slice:"8:10"}}/{{concerts.datetime_local|slice:":4"}}
-                            </h6>
-                        </div>
                     </div>
-
+                    <div class="card-footer">
+                        <h6 id="concert{{concerts.id}}">
+                            {{concerts.datetime_local|slice:"5:7"}}/{{concerts.datetime_local|slice:"8:10"}}/{{concerts.datetime_local|slice:":4"}}
+                        </h6>
+                    </div>
                 </a>
             </div>
             {% endfor %}
@@ -106,13 +105,12 @@
                             <h6>{{concerts.venue.name}}</h6>
                             <h6>{{concerts.display_location}}</h6>
                         </div>
-                        <div class="card-footer">
-                            <h6 id="concert{{concerts.id}}">
-                                {{concerts.datetime_local|slice:"5:7"}}/{{concerts.datetime_local|slice:"8:10"}}/{{concerts.datetime_local|slice:":4"}}
-                            </h6>
-                        </div>
                     </div>
-
+                    <div class="card-footer">
+                        <h6 id="concert{{concerts.id}}">
+                            {{concerts.datetime_local|slice:"5:7"}}/{{concerts.datetime_local|slice:"8:10"}}/{{concerts.datetime_local|slice:":4"}}
+                        </h6>
+                    </div>
                 </a>
             </div>
             {% endfor %}

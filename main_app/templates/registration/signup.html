@@ -4,24 +4,29 @@
 {% block body %}
 <div class="signup-page">
     <div class="row">
-    <div class="signup-form col">
-    <div class="signup-title">
-        <h1>Track your favorite artists!</h1>
-        <h2>Signup Now!</h2>
+        <div class="signup-form col-12">
+            <div class="form-card">
+                <div class="signup-title">
+                    <h1>Track your favorite artists!</h1>
+                    <h2>Signup Now!</h2>
+                    <hr>
+                </div>
+                <!-- TO-DO error message doesn't show up in red? -->
+                {% if error_message %}
+                <ul>
+                    <li class="text-red text-left">{{ error_message }}</li>
+                </ul>
+                {% endif %}
+                <form class="text-left" action="" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input class="btn btn-start-order" type="submit" value="Signup">
+                </form>
+            </div>
+        </div>
     </div>
-    {% if error_message %}
-        <p class="text-red">{{ error_message }}</p>
-        {% endif %}
-
-        <form action="" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input class="btn btn_primary" type="submit" value="Signup">
-        </form>
-    </div>
-</div>
     <div class="signup-img col">
-        <img src='https://images.pexels.com/photos/3172566/pexels-photo-3172566.jpeg?auto=compress&cs=tinysrgb&w=800'>
+        <img class="grid-card" src='https://images.pexels.com/photos/3172566/pexels-photo-3172566.jpeg?auto=compress&cs=tinysrgb&w=800'>
     </div>
 </div>
 
